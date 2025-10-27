@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-hero py-16 md:py-24">
+      <section className="bg-gradient-hero pt-16 md:pt-20 pb-16 md:pb-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

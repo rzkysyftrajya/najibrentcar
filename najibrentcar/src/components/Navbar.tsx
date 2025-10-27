@@ -38,35 +38,6 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      {/* Luxury Contact Info Header */}
-      <motion.div
-        className="flex justify-center md:justify-end items-center py-3 text-sm text-white bg-gradient-to-r from-primary/90 to-primary border-b border-white/10 px-4 backdrop-blur-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        <div className="flex items-center space-x-6">
-          <motion.a
-            href="tel:+6282111111991"
-            className="flex items-center space-x-2 hover:text-accent transition-all duration-300"
-            whileHover={{ scale: 1.05, x: 2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Phone className="h-4 w-4" />
-            <span className="font-medium">+62 82-111-111-991</span>
-          </motion.a>
-          <motion.a
-            href="mailto:najibrentcar@gmail.com"
-            className="flex items-center space-x-2 hover:text-accent transition-all duration-300"
-            whileHover={{ scale: 1.05, x: 2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Mail className="h-4 w-4" />
-            <span className="font-medium">najibrentcar@gmail.com</span>
-          </motion.a>
-        </div>
-      </motion.div>
-
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Luxury Logo */}

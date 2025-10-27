@@ -1,17 +1,14 @@
-# Website Updates Plan
+# Fleet Page Responsiveness Improvements
 
-## Current Status: In Progress
-
-### Tasks Completed
-
-- [x] Update company name from "CV.NAJIB RENTCAR" to "CV. NAJIB JAYA RENT CAR" in Navbar.tsx, ensure text not too large
-- [x] Change primary color to #0066ff 50% in index.css (convert to HSL: hsl(210, 100%, 50%))
-- [x] Optimize layout in Home.tsx (reduce hero title size if needed)
-- [x] Update map iframe in Contact.tsx with provided Google Maps embed code
-- [x] Add color-primary note: color-primary : #0066ff 50%
-
-### Followup Steps
-
-- [x] Test changes by running dev server
-- [x] Verify layout responsiveness
-- [x] Check color consistency across components
+- [x] Adjust hero stats grid to single column on very small screens (sm:grid-cols-2 md:grid-cols-4)
+- [x] Improve mobile filter layout to stack better and use full width
+- [x] Add better spacing and ensure cars grid is fully responsive with consistent gaps
+- [x] Fine-tune CTA button layout for mobile
+- [x] Test the page on different screen sizes to verify responsiveness
+- [x] Run the development server to check live
+- [x] Fix navbar overlap with hero section on Fleet page
+- [x] Add background image to Fleet hero section like Home page
+- [x] Fix text visibility in hero stats cards
+- [x] Fix text overflow in hero stats cards
+- [x] Fix CarCard layout synchronization (capacity and transmission badges)
+- [x] Remove blue contact header from navbar across all pages

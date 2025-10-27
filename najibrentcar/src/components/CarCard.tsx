@@ -102,18 +102,18 @@ const CarCard = ({ car, index = 0 }: CarCardProps) => {
           </motion.div>
 
           <motion.div
-            className="flex items-center justify-between text-sm"
+            className="grid grid-cols-2 gap-2 text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 + index * 0.1 }}
           >
-            <div className="flex items-center space-x-2 bg-muted/50 px-3 py-1 rounded-full">
+            <div className="flex flex-col items-center space-y-1 bg-muted/50 px-2 py-2 rounded-lg text-center">
               <Users className="h-4 w-4 text-primary" />
-              <span className="font-medium">{car.capacity}</span>
+              <span className="font-medium text-xs">{car.capacity}</span>
             </div>
-            <div className="flex items-center space-x-2 bg-muted/50 px-3 py-1 rounded-full">
+            <div className="flex flex-col items-center space-y-1 bg-muted/50 px-2 py-2 rounded-lg text-center">
               <Gauge className="h-4 w-4 text-primary" />
-              <span className="font-medium">{car.transmission}</span>
+              <span className="font-medium text-xs">{car.transmission}</span>
             </div>
           </motion.div>
         </CardContent>

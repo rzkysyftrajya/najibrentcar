@@ -17,7 +17,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-20">
         {/* Luxury Background */}
         <div className="absolute inset-0">
           <div
