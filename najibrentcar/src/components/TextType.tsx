@@ -168,11 +168,24 @@ const TextType = ({
     {
       ref: containerRef,
       className: `text-type ${className}`,
+      style: {
+        fontSynthesis: "none",
+        textRendering: "optimizeLegibility",
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale",
+        ...props.style,
+      },
       ...props,
     },
     <span
       className="text-type__content"
-      style={{ color: getCurrentTextColor() || "inherit" }}
+      style={{
+        color: getCurrentTextColor() || "inherit",
+        fontSynthesis: "none",
+        textRendering: "optimizeLegibility",
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale",
+      }}
     >
       {displayedText}
     </span>,
@@ -182,6 +195,12 @@ const TextType = ({
         className={`text-type__cursor ${cursorClassName} ${
           shouldHideCursor ? "text-type__cursor--hidden" : ""
         }`}
+        style={{
+          fontSynthesis: "none",
+          textRendering: "optimizeLegibility",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
+        }}
       >
         {cursorCharacter}
       </span>

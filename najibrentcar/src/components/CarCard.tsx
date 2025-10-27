@@ -107,13 +107,17 @@ const CarCard = ({ car, index = 0 }: CarCardProps) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 + index * 0.1 }}
           >
-            <div className="flex flex-col items-center space-y-1 bg-muted/50 px-2 py-2 rounded-lg text-center">
-              <Users className="h-4 w-4 text-primary" />
-              <span className="font-medium text-xs">{car.capacity}</span>
+            <div className="flex flex-col items-center space-y-1 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 px-2 py-2 rounded-lg text-center border border-blue-200/50 dark:border-blue-800/50">
+              <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <span className="font-medium text-xs text-blue-700 dark:text-blue-300">
+                {car.capacity}
+              </span>
             </div>
-            <div className="flex flex-col items-center space-y-1 bg-muted/50 px-2 py-2 rounded-lg text-center">
-              <Gauge className="h-4 w-4 text-primary" />
-              <span className="font-medium text-xs">{car.transmission}</span>
+            <div className="flex flex-col items-center space-y-1 bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-emerald-900/20 dark:to-teal-900/20 px-2 py-2 rounded-lg text-center border border-emerald-200/50 dark:border-emerald-800/50">
+              <Gauge className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="font-medium text-xs text-emerald-700 dark:text-emerald-300">
+                {car.transmission}
+              </span>
             </div>
           </motion.div>
         </CardContent>

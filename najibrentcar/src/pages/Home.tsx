@@ -31,8 +31,6 @@ import { Button } from "@/components/ui/button";
 import CarCard from "@/components/CarCard";
 import { cars } from "@/data/cars";
 import SchemaOrg from "@/components/SchemaOrg";
-import TextType from "@/components/TextType";
-import "@/components/TextType.css";
 
 const Home = () => {
   const featuredCars = cars.filter((car) => car.featured);
@@ -168,22 +166,39 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Ahmad Rahman",
+      name: "Riyadh Saputra",
       rating: 5,
-      text: "Pelayanan sangat memuaskan, mobil dalam kondisi prima dan harga terjangkau. Recommended!",
-      date: "2 minggu yang lalu",
+      text: "Sangat rekomendasi. Kalo cari rental di daerah tangsel dan sekitarnya.. unit pilihan banyak. Harga terjangkau, yg pasti mobil sehat dan mulus",
+      date: "2 bulan yang lalu",
+      link: "https://maps.app.goo.gl/vqYX6aj1y16HC7fy8",
     },
     {
-      name: "Siti Nurhaliza",
+      name: "Hearis Rakha",
       rating: 5,
-      text: "Sudah beberapa kali sewa di sini, selalu reliable dan driver ramah. Terima kasih NJRC!",
-      date: "1 bulan yang lalu",
+      text: "Alhamdulillah, semua Nya Lancar Van Alphard nya luar biasa. Untuk Jemput Delegasi Kerajaan Brunei dan Dari Tanzania dan Mesir istimewa., Saya sangat puas dengan pelayanan rental mobil ini. Mobil yang disediakan sangat bersih dan nyaman, serta Driver -nya Sabar dan ramah juga profesional. Sewa mobil Premium Class terlengkap sekitar BSD, GADING SERPONG, ALAM SUTERA, ( JABODETABEK ) OWNER nya Luar Biasa 🔝",
+      date: "sebulan lalu",
+      link: "https://maps.app.goo.gl/WEv16dKRkFeXaf8C7",
     },
     {
-      name: "Budi Santoso",
+      name: "Dewi Pungky",
       rating: 5,
-      text: "Booking mudah via WhatsApp, mobil datang tepat waktu. Layanan terbaik di Jakarta!",
-      date: "3 minggu yang lalu",
+      text: "Alhamdulillah pelayanan ny baik dan mobil ny lengkap dan bagus Udah 4kali pake van alphard disini oke semua 👍 rekomen buat yg cari rental dan ada supir nya Buat nanti ke depan ny bisa pake agen rental dsni trs",
+      date: "sebulan lalu",
+      link: "https://maps.app.goo.gl/BMX44XeCfpeQ8zbNA",
+    },
+    {
+      name: "Leni Yuliani",
+      rating: 5,
+      text: "Harga ramah di kantong, mobil sehat dan mulus, owner ramah, recomended deh",
+      date: "2 bulan lalu",
+      link: "https://maps.app.goo.gl/zs7iHB62cMzPiXKM9",
+    },
+    {
+      name: "Hersya Car",
+      rating: 5,
+      text: "Rental terbaik, komplit mobilnya dan harga terjangkau",
+      date: "3 bulan lalu",
+      link: "https://maps.app.goo.gl/uHEAUeJqivMuapRK9",
     },
   ];
 
@@ -256,16 +271,14 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight"
+                  style={{
+                    fontSynthesis: "none",
+                    textRendering: "optimizeLegibility",
+                    WebkitFontSmoothing: "antialiased",
+                    MozOsxFontSmoothing: "grayscale",
+                  }}
                 >
-                  <TextType
-                    text={["Rental Mobil Mewah Terbaik di Jakarta"]}
-                    typingSpeed={75}
-                    pauseDuration={2000}
-                    showCursor={true}
-                    cursorCharacter="|"
-                    className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
-                    textColors={["#ffffff"]}
-                  />
+                  Rental Mobil Mewah Terbaik di Jakarta
                 </motion.h1>
 
                 <motion.p
@@ -572,7 +585,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={index}
@@ -593,7 +606,7 @@ const Home = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-muted-foreground mb-4 italic">
+                  <p className="text-muted-foreground mb-4 italic text-sm leading-relaxed">
                     "{testimonial.text}"
                   </p>
                   <div className="flex justify-between items-center">
@@ -604,6 +617,16 @@ const Home = () => {
                       {testimonial.date}
                     </span>
                   </div>
+                  {testimonial.link && (
+                    <a
+                      href={testimonial.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-primary hover:text-primary/80 mt-2 inline-block transition-colors"
+                    >
+                      Lihat di Google Maps →
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>
