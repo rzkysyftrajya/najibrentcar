@@ -349,7 +349,7 @@ const Home = () => {
                       <img
                         src="/images/lm350h.jpg"
                         alt="Luxury MPV"
-                        className="w-full h-64 object-cover rounded-xl shadow-2xl"
+                        className="w-full h-64 object-contain rounded-xl shadow-2xl"
                         onError={(e) => {
                           e.currentTarget.src =
                             "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
