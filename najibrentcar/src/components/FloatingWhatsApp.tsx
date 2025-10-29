@@ -1,4 +1,4 @@
-import { MessageCircle, Phone, Crown } from "lucide-react";
+import { Crown } from "lucide-react";
 import { motion } from "framer-motion";
 
 const FloatingContact = () => {
@@ -40,7 +40,7 @@ const FloatingContact = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <MessageCircle className="h-6 w-6" />
+          <img src="/icon-wa.png" alt="WhatsApp" className="h-6 w-6" />
         </motion.div>
 
         <motion.span
@@ -81,7 +81,7 @@ const FloatingContact = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <Phone className="h-6 w-6" />
+          <img src="/icon-telphone.png" alt="Phone" className="h-6 w-6" />
         </motion.div>
 
         <motion.span
