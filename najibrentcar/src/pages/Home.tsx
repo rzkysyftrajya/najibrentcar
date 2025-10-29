@@ -120,24 +120,88 @@ const Home = () => {
 
   const destinations = [
     {
-      name: "Jakarta",
-      image: "/images/jakarta.jpg",
-      description: "Ibu kota Indonesia",
+      name: "Grand Indonesia Mall",
+      rating: 4.4,
+      reviews: "(3.273)",
+      category: "Tempat Belanja",
+      description:
+        "world theme section - Ray Pool at Jakarta Aquarium & American seafood and grill restaurant located in Neo Soho LG floor. Banyan Tree. The wide branches and hanging roots feels like you sitting by the rivers.",
+      image: "/destinasi/grand-indonesia-mall.webp",
     },
     {
-      name: "Bandung",
-      image: "/images/bandung.jpg",
-      description: "Kota kembang",
+      name: "Jakarta Aquarium & Safari",
+      rating: 4.6,
+      reviews: "(734)",
+      category: "Akuarium",
+      description: "",
+      image: "/destinasi/jakarta-aquarium.webp",
     },
     {
-      name: "Bogor",
-      image: "/images/bogor.jpg",
-      description: "Kota hujan",
+      name: "Monumen Nasional (MONAS)",
+      rating: 3.9,
+      reviews: "(4.203)",
+      category: "Monumen & Patung",
+      description:
+        "Istiqlal grand mesjid adalah salah satu yang terbesar di asia,bisa menampung 250ribu orang,dan berada tepat di depan gereja katolik, Istiqlal Mosque",
+      image: "/destinasi/monas.webp",
     },
     {
-      name: "Tangerang",
-      image: "/images/tangerang.jpg",
-      description: "Kota seribu industri",
+      name: "Masjid Istiqlal",
+      rating: 4.3,
+      reviews: "(2.724)",
+      category: "Tempat Keagamaan",
+      description: "",
+      image: "/destinasi/Masjid-Istiqlal.webp",
+    },
+    {
+      name: "Kota Tua Jakarta",
+      rating: 3.8,
+      reviews: "(2.039)",
+      category: "Tempat Bersejarah",
+      description:
+        "historical tourist attractions in Jakarta. the atmosphere is quite hot, because it is rarely a tree. here we can see the Dutch heritage buildings, prisons etc. many attractions and selfi objects in this place.",
+      image: "/destinasi/kota-tua-jakarta.webp",
+    },
+    {
+      name: "Museum Nasional",
+      rating: 4.1,
+      reviews: "(1.691)",
+      category: "Museum Benda Khusus",
+      description: "National Museum",
+      image: "/destinasi/museum-nasional.webp",
+    },
+    {
+      name: "Taman Mini Indonesia Indah",
+      rating: 4.0,
+      reviews: "(2.318)",
+      category: "Taman Hiburan",
+      description:
+        'Wisata-wisata yang dapat dilakukan di TMII Serunya "menyusui" Ikan Koi di Dunia Air Tawar TMII',
+      image: "/destinasi/Taman-Mini-Indonesia-Indah.webp",
+    },
+    {
+      name: "Pulau Seribu",
+      rating: 4.1,
+      reviews: "(923)",
+      category: "Pulau",
+      description: "Island tiger island/pulau macan アクティビティ料金",
+      image: "/destinasi/Pulau-Seribu.webp",
+    },
+    {
+      name: "Central Park",
+      rating: 4.3,
+      reviews: "(454)",
+      category: "Tempat Belanja",
+      description: "a shop",
+      image: "/destinasi/Central-Park.webp",
+    },
+    {
+      name: "Dunia Fantasi Ancol",
+      rating: 4.0,
+      reviews: "(1.613)",
+      category: "Taman Hiburan",
+      description: "This monument can be found in Ancol Beach",
+      image: "/destinasi/Dunia-Fantasi-Ancol.webp",
     },
   ];
 
@@ -229,8 +293,7 @@ const Home = () => {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
+                backgroundImage: "url('/hero-section.webp')",
               }}
             />
             {/* Premium Gradient Overlays */}
@@ -309,7 +372,7 @@ const Home = () => {
                       className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-black font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-luxury hover:shadow-hover transition-all duration-300 hover:scale-105"
                     >
                       <Zap className="h-5 w-5 md:h-6 md:w-6 mr-3" />
-                      Reserve Luxury Car
+                      Booking Sekarang
                     </Button>
                   </a>
                   <Link to="/armada">
@@ -317,7 +380,7 @@ const Home = () => {
                       size="lg"
                       className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-black font-bold text-base md:text-lg px-6 md:px-8 py-4 md:py-6 shadow-luxury hover:shadow-hover transition-all duration-300 hover:scale-105"
                     >
-                      Explore Fleet
+                      Explore Armada
                       <ChevronRight className="h-5 w-5 md:h-6 md:w-6 ml-3" />
                     </Button>
                   </Link>
@@ -527,7 +590,7 @@ const Home = () => {
               className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Destinasi Populer
+                Destinasi Populer di Jakarta
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Area layanan rental mobil NJRC di Jabodetabek
@@ -535,7 +598,7 @@ const Home = () => {
             </motion.div>
 
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {destinations.map((destination, index) => (
                   <motion.div
                     key={destination.name}
@@ -545,14 +608,55 @@ const Home = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group relative overflow-hidden rounded-xl bg-white shadow-card hover:shadow-hover transition-all hover:-translate-y-1 border border-border/30"
                   >
-                    <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative">
-                      <Globe className="h-12 w-12 text-primary/70" />
+                    <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden">
+                      {destination.image ? (
+                        <img
+                          src={destination.image}
+                          alt={destination.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            e.currentTarget.nextElementSibling.style.display =
+                              "flex";
+                          }}
+                        />
+                      ) : null}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+                      {!destination.image && (
+                        <Globe className="h-12 w-12 text-primary/70" />
+                      )}
                     </div>
                     <div className="p-5">
                       <h3 className="font-semibold text-lg text-foreground mb-2">
                         {destination.name}
                       </h3>
+                      {destination.rating && (
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-4 w-4 ${
+                                  i < Math.floor(destination.rating)
+                                    ? "text-yellow-400 fill-current"
+                                    : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-sm font-medium text-foreground">
+                            {destination.rating}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {destination.reviews}
+                          </span>
+                        </div>
+                      )}
+                      {destination.category && (
+                        <p className="text-xs text-primary font-medium mb-2">
+                          {destination.category}
+                        </p>
+                      )}
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {destination.description}
                       </p>
@@ -682,7 +786,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Fleet Section */}
+        {/* Armada Section */}
         <section className="py-16 bg-gradient-to-br from-emerald-50/40 to-teal-50/40">
           <div className="container mx-auto px-4">
             <motion.div

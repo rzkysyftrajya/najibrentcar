@@ -20,7 +20,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/tentang" },
-    { name: "Fleet", path: "/armada" },
+    { name: "Armada", path: "/armada" },
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/kontak" },
   ];
@@ -192,7 +192,7 @@ const Navbar = () => {
                   >
                     <Button className="w-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-black font-bold py-4 shadow-luxury hover:shadow-hover transition-all duration-300 border-0">
                       <Sparkles className="h-5 w-5 mr-2" />
-                      Reserve Luxury Car
+                      Booking Sekarang
                     </Button>
                   </a>
                 </motion.div>
