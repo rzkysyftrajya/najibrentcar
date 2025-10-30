@@ -310,7 +310,7 @@ const Home = () => {
             }}
           />
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               {/* Left Content */}
               <motion.div
@@ -348,7 +348,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="text-base md:text-lg lg:text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                  className="text-base md:text-lg lg:text-xl text-gray-300 mb-8 max-w-2xl 2xl:max-w-3xl mx-auto lg:mx-0 leading-relaxed"
                 >
                   Rasakan kemewahan tak tertandingi dengan armada premium kami.
                   Dari sedan eksekutif hingga SUV mewah, setiap perjalanan
@@ -462,7 +462,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <section className="py-16 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -487,7 +487,7 @@ const Home = () => {
 
         {/* Why Choose Us Section */}
         <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -498,7 +498,7 @@ const Home = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Mengapa Pilih NJRC?
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-2xl 2xl:max-w-3xl mx-auto">
                 Kami berkomitmen memberikan layanan rental mobil terbaik di
                 Jakarta
               </p>
@@ -531,7 +531,7 @@ const Home = () => {
 
         {/* How It Works Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -542,12 +542,12 @@ const Home = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Cara Kerja
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-muted-foreground max-w-2xl 2xl:max-w-3xl mx-auto">
                 Proses penyewaan mobil yang mudah dan cepat
               </p>
             </motion.div>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {howItWorks.map((step, index) => (
                   <motion.div
@@ -581,7 +581,7 @@ const Home = () => {
 
         {/* Popular Destinations Section */}
         <section className="py-16 bg-gradient-to-br from-slate-50 to-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -597,7 +597,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {destinations.map((destination, index) => (
                   <motion.div
@@ -615,9 +615,10 @@ const Home = () => {
                           alt={destination.name}
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            e.currentTarget.nextElementSibling.style.display =
-                              "flex";
+                            const img = e.currentTarget as HTMLImageElement;
+                            img.style.display = "none";
+                            const next = img.nextElementSibling as HTMLElement;
+                            if (next) next.style.display = "flex";
                           }}
                         />
                       ) : null}
@@ -673,7 +674,7 @@ const Home = () => {
 
         {/* Testimonials Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -739,7 +740,7 @@ const Home = () => {
 
         {/* FAQ Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50/30 to-indigo-50/30">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -788,7 +789,7 @@ const Home = () => {
 
         {/* Armada Section */}
         <section className="py-16 bg-gradient-to-br from-emerald-50/40 to-teal-50/40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -804,7 +805,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl 2xl:max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {featuredCars.map((car, index) => (
                   <CarCard key={car.id} car={car} index={index} />
@@ -835,7 +836,7 @@ const Home = () => {
 
         {/* Testimonial Gallery Section */}
         <section className="py-16 bg-gradient-to-br from-purple-50/40 to-pink-50/40">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -851,7 +852,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {/* Placeholder testimonial images */}
                 {Array.from({ length: 8 }, (_, index) => (
@@ -910,7 +911,7 @@ const Home = () => {
 
         {/* Requirements Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -948,8 +949,8 @@ const Home = () => {
 
         {/* Services and Office Info Section */}
         <section className="py-16 bg-gradient-to-br from-violet-50/40 to-purple-50/40">
-          <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
+          <div className="container mx-auto px-6">
+            <div className="max-w-7xl 2xl:max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 {/* Services */}
                 <motion.div
@@ -1090,7 +1091,7 @@ const Home = () => {
 
         {/* CTA Section */}
         <section className="py-20 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

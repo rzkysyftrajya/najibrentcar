@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -100,7 +99,7 @@ const Blog = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl 2xl:max-w-4xl mx-auto text-center"
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -154,7 +153,7 @@ const Blog = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="max-w-6xl mx-auto"
+              className="max-w-6xl 2xl:max-w-5xl mx-auto"
             >
               <div className="flex items-center gap-2 mb-8">
                 <TrendingUp className="h-5 w-5 text-primary" />
@@ -232,7 +231,7 @@ const Blog = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-6xl mx-auto"
+            className="max-w-6xl 2xl:max-w-5xl mx-auto"
           >
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
               {/* Search */}
@@ -362,7 +361,7 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl 2xl:max-w-6xl mx-auto"
           >
             <AnimatePresence>
               {filteredAndSortedPosts.map((post, index) => (

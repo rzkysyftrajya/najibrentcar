@@ -12,7 +12,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-3xl 2xl:max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Hubungi Kami
@@ -27,7 +27,7 @@ const Contact = () => {
       {/* Contact Info & Map */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl 2xl:max-w-5xl mx-auto">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
