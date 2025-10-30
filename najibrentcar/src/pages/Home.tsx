@@ -310,7 +310,7 @@ const Home = () => {
             }}
           />
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               {/* Left Content */}
               <motion.div
@@ -462,7 +462,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <section className="py-16 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -487,7 +487,7 @@ const Home = () => {
 
         {/* Why Choose Us Section */}
         <section className="py-16 bg-background">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -531,7 +531,7 @@ const Home = () => {
 
         {/* How It Works Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -547,7 +547,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {howItWorks.map((step, index) => (
                   <motion.div
@@ -581,7 +581,7 @@ const Home = () => {
 
         {/* Popular Destinations Section */}
         <section className="py-16 bg-gradient-to-br from-slate-50 to-white">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -597,7 +597,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {destinations.map((destination, index) => (
                   <motion.div
@@ -674,7 +674,7 @@ const Home = () => {
 
         {/* Testimonials Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -740,7 +740,7 @@ const Home = () => {
 
         {/* FAQ Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50/30 to-indigo-50/30">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -756,7 +756,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {faqs.map((faq, index) => (
                   <motion.div
@@ -789,7 +789,7 @@ const Home = () => {
 
         {/* Armada Section */}
         <section className="py-16 bg-gradient-to-br from-emerald-50/40 to-teal-50/40">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -805,7 +805,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-7xl 2xl:max-w-6xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {featuredCars.map((car, index) => (
                   <CarCard key={car.id} car={car} index={index} />
@@ -836,7 +836,7 @@ const Home = () => {
 
         {/* Testimonial Gallery Section */}
         <section className="py-16 bg-gradient-to-br from-purple-50/40 to-pink-50/40">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -852,7 +852,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-6xl 2xl:max-w-5xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {/* Placeholder testimonial images */}
                 {Array.from({ length: 8 }, (_, index) => (
@@ -911,7 +911,7 @@ const Home = () => {
 
         {/* Requirements Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -927,7 +927,7 @@ const Home = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-2xl mx-auto">
+            <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {requirements.map((req, index) => (
                   <motion.div
@@ -949,8 +949,8 @@ const Home = () => {
 
         {/* Services and Office Info Section */}
         <section className="py-16 bg-gradient-to-br from-violet-50/40 to-purple-50/40">
-          <div className="container mx-auto px-6">
-            <div className="max-w-7xl 2xl:max-w-6xl mx-auto">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
+            <div className="w-full">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 {/* Services */}
                 <motion.div
@@ -1091,13 +1091,13 @@ const Home = () => {
 
         {/* CTA Section */}
         <section className="py-20 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-6">
+          <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto text-center"
+              className="w-full max-w-3xl mx-auto text-center"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Siap Sewa Mobil Impian Anda?
@@ -1111,14 +1111,13 @@ const Home = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="text-lg px-8 py-6 shadow-hover"
-                >
-                  Chat WhatsApp +62 82-111-111-991
-                </Button>
-              </a>
+                                  <Button
+                                    size="lg"
+                                    variant="secondary"
+                                    className="text-lg px-8 py-6 shadow-hover"
+                                  >
+                                    Chat WhatsApp
+                                  </Button>              </a>
             </motion.div>
           </div>
         </section>

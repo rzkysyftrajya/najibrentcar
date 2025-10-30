@@ -381,7 +381,7 @@ const Gallery = () => {
         <div className="container mx-auto px-4">
           <motion.div
             layout
-            className={`max-w-7xl 2xl:max-w-6xl mx-auto ${
+            className={`2xl:max-w-6xl max-w-7xl mx-auto ${
               viewMode === "masonry"
                 ? "columns-1 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 gap-4 space-y-4"
                 : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6"
