@@ -833,6 +833,81 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Testimonial Gallery Section */}
+        <section className="py-16 bg-gradient-to-br from-purple-50/40 to-pink-50/40">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Galeri Testimoni
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Kisah kepuasan pelanggan kami dalam bentuk visual
+              </p>
+            </motion.div>
+
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {/* Placeholder testimonial images */}
+                {Array.from({ length: 8 }, (_, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 aspect-square cursor-pointer hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <Users className="h-6 w-6 text-white" />
+                        </div>
+                        <p className="text-white/80 text-xs font-medium">
+                          Testimoni {index + 1}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="text-white text-center">
+                        <Smile className="h-8 w-8 mx-auto mb-2" />
+                        <p className="text-sm font-medium">Lihat Detail</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="text-center mt-12"
+            >
+              <p className="text-muted-foreground mb-4">
+                Ingin melihat lebih banyak testimoni?
+              </p>
+              <Link to="/galeri">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="bg-white/80 backdrop-blur-sm border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-card hover:shadow-hover"
+                >
+                  <Smile className="h-5 w-5 mr-2" />
+                  Kunjungi Galeri
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Requirements Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">

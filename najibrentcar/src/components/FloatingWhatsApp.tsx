@@ -9,7 +9,7 @@ const FloatingContact = () => {
   const telLink = `tel:+${phoneNumber}`;
 
   const buttonBase =
-    "fixed z-50 bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-black rounded-full p-4 shadow-luxury transition-all duration-500 group";
+    "fixed z-50 bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-black rounded-full p-3 sm:p-4 md:p-5 shadow-luxury transition-all duration-500 group";
 
   return (
     <>
@@ -18,7 +18,7 @@ const FloatingContact = () => {
         href={waLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${buttonBase} bottom-6 right-6`}
+        className={`${buttonBase} bottom-4 right-4 sm:bottom-6 sm:right-6`}
         initial={{ scale: 0, y: 100, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         transition={{
@@ -40,16 +40,20 @@ const FloatingContact = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <img src="/icon-wa.png" alt="WhatsApp" className="h-6 w-6" />
+          <img
+            src="/icon-wa.png"
+            alt="WhatsApp"
+            className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+          />
         </motion.div>
 
         <motion.span
           initial={{ opacity: 0, x: 10 }}
           whileHover={{ opacity: 1, x: 0 }}
-          className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-md text-white px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border border-white/20 shadow-luxury"
+          className="absolute right-full mr-2 sm:mr-3 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-md text-white px-2 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap border border-white/20 shadow-luxury"
         >
           <div className="flex items-center gap-2">
-            <Crown className="h-4 w-4 text-accent" />
+            <Crown className="h-3 w-3 sm:h-4 sm:w-4 text-accent" />
             WhatsApp
           </div>
           <div className="text-xs text-gray-300 mt-1">Chat Sekarang</div>
@@ -59,7 +63,7 @@ const FloatingContact = () => {
       {/* Phone Button */}
       <motion.a
         href={telLink}
-        className={`${buttonBase} bottom-24 right-6`}
+        className={`${buttonBase} bottom-16 sm:bottom-20 md:bottom-24 right-4 sm:right-6`}
         initial={{ scale: 0, y: 100, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         transition={{
@@ -81,16 +85,20 @@ const FloatingContact = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <img src="/icon-telphone.png" alt="Phone" className="h-6 w-6" />
+          <img
+            src="/icon-telphone.png"
+            alt="Phone"
+            className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+          />
         </motion.div>
 
         <motion.span
           initial={{ opacity: 0, x: 10 }}
           whileHover={{ opacity: 1, x: 0 }}
-          className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-md text-white px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border border-white/20 shadow-luxury"
+          className="absolute right-full mr-2 sm:mr-3 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-md text-white px-2 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap border border-white/20 shadow-luxury"
         >
           <div className="flex items-center gap-2">
-            <Crown className="h-4 w-4 text-accent" />
+            <Crown className="h-3 w-3 sm:h-4 sm:w-4 text-accent" />
             Call Us
           </div>
           <div className="text-xs text-gray-300 mt-1">24/7 Hotline</div>

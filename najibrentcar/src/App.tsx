@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Fleet from "./pages/Fleet";
+import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Contact from "./pages/Contact";
@@ -59,6 +60,20 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <Home />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/galeri"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Gallery />
             </motion.div>
           }
         />
