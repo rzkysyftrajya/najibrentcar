@@ -4,6 +4,11 @@ import { Car as CarIcon, Users, Settings, Fuel, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger
+} from "@/components/ui/dialog";
 import { Car } from "@/data/cars";
 
 interface CarCardProps {

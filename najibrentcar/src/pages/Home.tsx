@@ -28,6 +28,7 @@ import {
   Crown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import CarCard from "@/components/CarCard";
 import { cars } from "@/data/cars";
 import SchemaOrg from "@/components/SchemaOrg";
@@ -408,25 +409,36 @@ const Home = () => {
                     }}
                     className="relative z-10"
                   >
-                    <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-8 shadow-luxury border border-white/20">
-                      <img
-                        src="/images/lm350h.jpg"
-                        alt="Luxury MPV"
-                        className="w-full h-64 object-contain rounded-xl shadow-2xl"
-                        onError={(e) => {
-                          e.currentTarget.src =
-                            "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-                        }}
-                      />
-                      <div className="mt-4 text-center">
-                        <h3 className="text-white font-bold text-xl">
-                          Lexus LM350H
-                        </h3>
-                        <p className="text-accent font-semibold">
-                          Rp 10.000.000 / hari
-                        </p>
-                      </div>
-                    </div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="cursor-pointer bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-2xl p-8 shadow-luxury border border-white/20">
+                          <img
+                            src="/images/lm350h.jpg"
+                            alt="Luxury MPV"
+                            className="w-full h-64 object-contain rounded-xl shadow-2xl"
+                            onError={(e) => {
+                              e.currentTarget.src =
+                                "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                            }}
+                          />
+                          <div className="mt-4 text-center">
+                            <h3 className="text-white font-bold text-xl">
+                              Lexus LM350H
+                            </h3>
+                            <p className="text-accent font-semibold">
+                              Rp 10.000.000 / hari
+                            </p>
+                          </div>
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl p-0">
+                        <img
+                          src="/images/lm350h.jpg"
+                          alt="Luxury MPV"
+                          className="w-full h-auto rounded-lg"
+                        />
+                      </DialogContent>
+                    </Dialog>
                   </motion.div>
 
                   {/* Decorative Elements */}
@@ -608,25 +620,43 @@ const Home = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group relative overflow-hidden rounded-xl bg-white shadow-card hover:shadow-hover transition-all hover:-translate-y-1 border border-border/30"
                   >
-                    <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden">
-                      {destination.image ? (
-                        <img
-                          src={destination.image}
-                          alt={destination.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const img = e.currentTarget as HTMLImageElement;
-                            img.style.display = "none";
-                            const next = img.nextElementSibling as HTMLElement;
-                            if (next) next.style.display = "flex";
-                          }}
-                        />
-                      ) : null}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
-                      {!destination.image && (
-                        <Globe className="h-12 w-12 text-primary/70" />
-                      )}
-                    </div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden cursor-pointer">
+                          {destination.image ? (
+                            <img
+                              src={destination.image}
+                              alt={destination.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const img = e.currentTarget as HTMLImageElement;
+                                img.style.display = "none";
+                                const next =
+                                  img.nextElementSibling as HTMLElement;
+                                if (next) next.style.display = "flex";
+                              }}
+                            />
+                          ) : null}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+                          {!destination.image && (
+                            <Globe className="h-12 w-12 text-primary/70" />
+                          )}
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl p-0">
+                        {destination.image ? (
+                          <img
+                            src={destination.image}
+                            alt={destination.name}
+                            className="w-full h-auto rounded-lg"
+                          />
+                        ) : (
+                          <div className="w-full h-64 flex items-center justify-center bg-gray-200 rounded-lg">
+                            <Globe className="h-12 w-12 text-gray-500" />
+                          </div>
+                        )}
+                      </DialogContent>
+                    </Dialog>
                     <div className="p-5">
                       <h3 className="font-semibold text-lg text-foreground mb-2">
                         {destination.name}
@@ -854,8 +884,8 @@ const Home = () => {
 
             <div className="w-full">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {/* Placeholder testimonial images */}
-                {Array.from({ length: 8 }, (_, index) => (
+                {/* Testimonial images from galeri-testimoni folder */}
+                {Array.from({ length: 11 }, (_, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -864,7 +894,18 @@ const Home = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 aspect-square cursor-pointer hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <img
+                      src={`/galeri-testimoni/testimoni-${index + 1}.webp`}
+                      alt={`Testimoni ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement;
+                        img.style.display = "none";
+                        const next = img.nextElementSibling as HTMLElement;
+                        if (next) next.style.display = "flex";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="text-center">
                         <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
                           <Users className="h-6 w-6 text-white" />
@@ -1111,13 +1152,14 @@ const Home = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                                  <Button
-                                    size="lg"
-                                    variant="secondary"
-                                    className="text-lg px-8 py-6 shadow-hover"
-                                  >
-                                    Chat WhatsApp
-                                  </Button>              </a>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="text-lg px-8 py-6 shadow-hover"
+                >
+                  Chat WhatsApp
+                </Button>{" "}
+              </a>
             </motion.div>
           </div>
         </section>

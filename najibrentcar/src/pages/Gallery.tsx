@@ -14,6 +14,9 @@ import {
   List,
   Eye,
   Heart,
+  X,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,8 +29,15 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import CarCard from "@/components/CarCard";
 import { cars } from "@/data/cars";
+import type { Car } from "@/data/cars";
 
 const Gallery = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +46,25 @@ const Gallery = () => {
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "masonry">("grid");
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const openModal = (car: Car) => {
+    setSelectedCar(car);
+    setIsModalOpen(true);
+    setIsZoomed(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCar(null);
+    setIsZoomed(false);
+  };
+
+  const toggleZoom = () => {
+    setIsZoomed(!isZoomed);
+  };
 
   const categories = [
     "all",
@@ -136,11 +165,11 @@ const Gallery = () => {
               <Grid3X3 className="h-10 w-10 text-primary" />
             </motion.div>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Galeri Armada
+              Galeri Testimoni
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Koleksi lengkap armada premium kami dalam tampilan galeri yang
-              elegan dan modern untuk memudahkan Anda memilih kendaraan impian
+              Lihat pengalaman pelanggan kami yang puas dengan layanan rental
+              mobil premium NJRC
             </p>
 
             {/* Stats */}
@@ -172,209 +201,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Filters & Search */}
-      <section className="py-8 bg-background border-b border-border sticky top-16 md:top-20 z-30 backdrop-blur-md bg-background/95">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-              {/* Search */}
-              <div className="relative flex-1 w-full sm:max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Cari mobil atau brand..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
 
-              {/* View Mode Toggle */}
-              <div className="flex items-center gap-2">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className="p-2"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "masonry" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setViewMode("masonry")}
-                  className="p-2"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
-
-              {/* Filter Toggle */}
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="sm:hidden w-full sm:w-auto"
-              >
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
-
-              {/* Desktop Filters */}
-              <div className="hidden sm:flex items-center gap-4 flex-wrap justify-center sm:justify-end">
-                <Select
-                  value={selectedCategory}
-                  onValueChange={setSelectedCategory}
-                >
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Kategori" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category === "all" ? "Semua Kategori" : category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <Select
-                  value={selectedTransmission}
-                  onValueChange={setSelectedTransmission}
-                >
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Transmisi" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {transmissions.map((transmission) => (
-                      <SelectItem key={transmission} value={transmission}>
-                        {transmission === "all"
-                          ? "Semua Transmisi"
-                          : transmission}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Urutkan" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="featured">Featured</SelectItem>
-                    <SelectItem value="price-low">Harga Terendah</SelectItem>
-                    <SelectItem value="price-high">Harga Tertinggi</SelectItem>
-                    <SelectItem value="name">Nama A-Z</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Mobile Filters */}
-            <AnimatePresence>
-              {showFilters && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="sm:hidden mt-4 space-y-4"
-                >
-                  <div className="grid grid-cols-1 gap-4">
-                    <Select
-                      value={selectedCategory}
-                      onValueChange={setSelectedCategory}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Kategori" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {categories.map((category) => (
-                          <SelectItem key={category} value={category}>
-                            {category === "all" ? "Semua Kategori" : category}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-
-                    <Select
-                      value={selectedTransmission}
-                      onValueChange={setSelectedTransmission}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Transmisi" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {transmissions.map((transmission) => (
-                          <SelectItem key={transmission} value={transmission}>
-                            {transmission === "all"
-                              ? "Semua Transmisi"
-                              : transmission}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-
-                    <Select value={sortBy} onValueChange={setSortBy}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Urutkan" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="featured">Featured</SelectItem>
-                        <SelectItem value="price-low">
-                          Harga Terendah
-                        </SelectItem>
-                        <SelectItem value="price-high">
-                          Harga Tertinggi
-                        </SelectItem>
-                        <SelectItem value="name">Nama A-Z</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Active Filters */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              {searchTerm && (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  Search: {searchTerm}
-                  <button
-                    onClick={() => setSearchTerm("")}
-                    className="ml-1 hover:text-destructive"
-                  >
-                    ×
-                  </button>
-                </Badge>
-              )}
-              {selectedCategory !== "all" && (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  {selectedCategory}
-                  <button
-                    onClick={() => setSelectedCategory("all")}
-                    className="ml-1 hover:text-destructive"
-                  >
-                    ×
-                  </button>
-                </Badge>
-              )}
-              {selectedTransmission !== "all" && (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  {selectedTransmission}
-                  <button
-                    onClick={() => setSelectedTransmission("all")}
-                    className="ml-1 hover:text-destructive"
-                  >
-                    ×
-                  </button>
-                </Badge>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Gallery Grid */}
       <section className="py-16 bg-background">
@@ -406,7 +233,8 @@ const Gallery = () => {
                         <img
                           src={car.image}
                           alt={car.name}
-                          className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+                          onClick={() => openModal(car)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -415,6 +243,7 @@ const Gallery = () => {
                               size="sm"
                               variant="secondary"
                               className="h-8 w-8 p-0"
+                              onClick={() => openModal(car)}
                             >
                               <Eye className="h-4 w-4" />
                             </Button>
@@ -464,7 +293,7 @@ const Gallery = () => {
               animate={{ opacity: 1 }}
               className="text-center py-16"
             >
-              <Car className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+              <Users className="h-10 w-10 text-primary" />
               <h3 className="text-xl font-semibold text-foreground mb-2">
                 Tidak ada mobil ditemukan
               </h3>
@@ -533,6 +362,86 @@ const Gallery = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      <Dialog open={isModalOpen} onOpenChange={closeModal}>
+        <DialogContent className="max-w-4xl w-full p-0 bg-black/95 border-0">
+          <DialogHeader className="p-4 pb-0">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="text-white text-lg font-semibold">
+                {selectedCar?.name}
+              </DialogTitle>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={toggleZoom}
+                  className="h-8 w-8 p-0"
+                >
+                  {isZoomed ? (
+                    <ZoomOut className="h-4 w-4" />
+                  ) : (
+                    <ZoomIn className="h-4 w-4" />
+                  )}
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={closeModal}
+                  className="h-8 w-8 p-0"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </DialogHeader>
+          <div className="relative overflow-hidden">
+            <img
+              src={selectedCar?.image}
+              alt={selectedCar?.name}
+              className={`w-full max-h-[70vh] object-contain transition-transform duration-300 ${
+                isZoomed
+                  ? "scale-150 cursor-zoom-out"
+                  : "scale-100 cursor-zoom-in"
+              }`}
+              onClick={toggleZoom}
+            />
+          </div>
+          {selectedCar && (
+            <div className="p-4 bg-white">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">
+                    {selectedCar.name}
+                  </h3>
+                  <p className="text-muted-foreground mb-2">
+                    {selectedCar.brand} • {selectedCar.year}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {selectedCar.category} • {selectedCar.transmission} •{" "}
+                    {selectedCar.capacity}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="font-bold text-primary text-xl mb-2">
+                    {selectedCar.price}
+                  </p>
+                  <a
+                    href="https://wa.me/6282111111991"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="w-full md:w-auto">
+                      <Zap className="h-4 w-4 mr-2" />
+                      Pesan Sekarang
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
