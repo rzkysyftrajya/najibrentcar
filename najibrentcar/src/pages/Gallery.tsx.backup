@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Camera,
-  Smile,
-  Star,
+  Filter,
+  Search,
+  Car,
   Users,
+  Settings,
+  Fuel,
+  Calendar,
+  Star,
+  Zap,
+  Grid3X3,
+  List,
   Eye,
   Heart,
   X,
@@ -12,6 +19,14 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -20,21 +35,30 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import CarCard from "@/components/CarCard";
+import { cars } from "@/data/cars";
+import type { Car } from "@/data/cars";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedTransmission, setSelectedTransmission] = useState("all");
+  const [sortBy, setSortBy] = useState("featured");
+  const [showFilters, setShowFilters] = useState(false);
+  const [viewMode, setViewMode] = useState<"grid" | "masonry">("grid");
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
 
-  const openModal = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
+  const openModal = (car: Car) => {
+    setSelectedCar(car);
     setIsModalOpen(true);
     setIsZoomed(false);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedImage(null);
+    setSelectedCar(null);
     setIsZoomed(false);
   };
 
@@ -42,23 +66,62 @@ const Gallery = () => {
     setIsZoomed(!isZoomed);
   };
 
-  // Testimonial images from galeri-testimoni folder
-  const testimonialImages = Array.from({ length: 11 }, (_, index) => ({
-    id: index + 1,
-    src: `/galeri-testimoni/testimoni-${index + 1}.webp`,
-    alt: `Testimoni ${index + 1}`,
-    title: `Testimoni ${index + 1}`,
-  }));
+  const categories = [
+    "all",
+    ...Array.from(new Set(cars.map((car) => car.category))),
+  ];
+  const transmissions = [
+    "all",
+    ...Array.from(new Set(cars.map((car) => car.transmission))),
+  ];
+
+  const filteredAndSortedCars = useMemo(() => {
+    const filtered = cars.filter((car) => {
+      const matchesSearch =
+        car.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        car.brand.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "all" || car.category === selectedCategory;
+      const matchesTransmission =
+        selectedTransmission === "all" ||
+        car.transmission === selectedTransmission;
+
+      return matchesSearch && matchesCategory && matchesTransmission;
+    });
+
+    // Sort cars
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":
+          return (
+            parseInt(a.price.replace(/[^\d]/g, "")) -
+            parseInt(b.price.replace(/[^\d]/g, ""))
+          );
+        case "price-high":
+          return (
+            parseInt(b.price.replace(/[^\d]/g, "")) -
+            parseInt(a.price.replace(/[^\d]/g, ""))
+          );
+        case "name":
+          return a.name.localeCompare(b.name);
+        case "featured":
+        default:
+          return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+      }
+    });
+
+    return filtered;
+  }, [searchTerm, selectedCategory, selectedTransmission, sortBy]);
 
   const stats = [
-    { icon: Camera, label: "Foto Testimoni", value: testimonialImages.length },
+    { icon: Car, label: "Total Armada", value: cars.length },
     {
       icon: Star,
-      label: "Rating Tinggi",
-      value: "5.0",
+      label: "Mobil Premium",
+      value: cars.filter((car) => car.featured).length,
     },
-    { icon: Users, label: "Pelanggan Puas", value: "500+" },
-    { icon: Smile, label: "Ulasan Positif", value: "100%" },
+    { icon: Users, label: "Kapasitas Max", value: "7 Penumpang" },
+    { icon: Zap, label: "Siap Pakai", value: "24/7" },
   ];
 
   return (
@@ -99,14 +162,14 @@ const Gallery = () => {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-6"
             >
-              <Camera className="h-10 w-10 text-primary" />
+              <Grid3X3 className="h-10 w-10 text-primary" />
             </motion.div>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               Galeri Testimoni
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Kisah kepuasan pelanggan kami dalam bentuk visual. Lihat bagaimana
-              pengalaman mereka bersama layanan rental mobil NJRC
+              Lihat pengalaman pelanggan kami yang puas dengan layanan rental
+              mobil premium NJRC
             </p>
 
             {/* Stats */}
@@ -138,33 +201,40 @@ const Gallery = () => {
         </div>
       </section>
 
+
+
       {/* Gallery Grid */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 2xl:max-w-6xl max-w-7xl mx-auto">
+          <motion.div
+            layout
+            className={`2xl:max-w-6xl max-w-7xl mx-auto ${
+              viewMode === "masonry"
+                ? "columns-1 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 gap-4 space-y-4"
+                : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6"
+            }`}
+          >
             <AnimatePresence>
-              {testimonialImages.map((image, index) => (
+              {filteredAndSortedCars.map((car, index) => (
                 <motion.div
-                  key={image.id}
+                  key={car.id}
+                  layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className={
+                    viewMode === "masonry" ? "break-inside-avoid mb-4" : ""
+                  }
                 >
                   <Card className="group overflow-hidden border-0 shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 bg-card">
                     <CardContent className="p-0">
                       <div className="relative overflow-hidden">
                         <img
-                          src={image.src}
-                          alt={image.alt}
+                          src={car.image}
+                          alt={car.name}
                           className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-                          onClick={() => openModal(image.src)}
-                          onError={(e) => {
-                            const img = e.currentTarget as HTMLImageElement;
-                            img.style.display = "none";
-                            const next = img.nextElementSibling as HTMLElement;
-                            if (next) next.style.display = "flex";
-                          }}
+                          onClick={() => openModal(car)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -173,7 +243,7 @@ const Gallery = () => {
                               size="sm"
                               variant="secondary"
                               className="h-8 w-8 p-0"
-                              onClick={() => openModal(image.src)}
+                              onClick={() => openModal(car)}
                             >
                               <Eye className="h-4 w-4" />
                             </Button>
@@ -186,25 +256,27 @@ const Gallery = () => {
                             </Button>
                           </div>
                         </div>
-                        <div className="absolute top-3 left-3">
-                          <Badge className="bg-accent text-accent-foreground">
-                            Testimoni
-                          </Badge>
-                        </div>
+                        {car.featured && (
+                          <div className="absolute top-3 left-3">
+                            <Badge className="bg-accent text-accent-foreground">
+                              Premium
+                            </Badge>
+                          </div>
+                        )}
                       </div>
                       <div className="p-4">
                         <h3 className="font-semibold text-lg text-foreground mb-1 line-clamp-2">
-                          {image.title}
+                          {car.name}
                         </h3>
                         <p className="text-sm text-muted-foreground mb-2">
-                          Foto testimoni pelanggan NJRC
+                          {car.brand} • {car.year}
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-primary text-lg">
-                            ⭐ 5.0
+                            {car.price}
                           </span>
                           <Badge variant="outline" className="text-xs">
-                            Verified
+                            {car.capacity}
                           </Badge>
                         </div>
                       </div>
@@ -214,6 +286,22 @@ const Gallery = () => {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          {filteredAndSortedCars.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <Users className="h-10 w-10 text-primary" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">
+                Tidak ada mobil ditemukan
+              </h3>
+              <p className="text-muted-foreground">
+                Coba ubah filter atau kata kunci pencarian
+              </p>
+            </motion.div>
+          )}
 
           {/* Enhanced CTA */}
           <motion.div
@@ -236,15 +324,15 @@ const Gallery = () => {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6"
               >
-                <Smile className="h-8 w-8 text-primary" />
+                <Settings className="h-8 w-8 text-primary" />
               </motion.div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Ingin Jadi Bagian dari Testimoni Kami?
+                Mobil Impian Anda Tidak Ada?
               </h2>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Rasakan layanan rental mobil terbaik NJRC dan jadilah bagian
-                dari cerita kepuasan pelanggan kami. Booking sekarang dan
-                dapatkan pengalaman tak terlupakan.
+                Kami memiliki lebih banyak pilihan armada yang siap memenuhi
+                kebutuhan spesifik Anda. Hubungi tim kami untuk konsultasi
+                gratis dan penawaran terbaik.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
@@ -257,8 +345,8 @@ const Gallery = () => {
                     size="lg"
                     className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow"
                   >
-                    <Star className="h-4 w-4 mr-2" />
-                    Booking Sekarang
+                    <Zap className="h-4 w-4 mr-2" />
+                    Konsultasi Gratis
                   </Button>
                 </a>
                 <Button
@@ -266,8 +354,8 @@ const Gallery = () => {
                   size="lg"
                   className="w-full sm:w-auto"
                 >
-                  <Camera className="h-4 w-4 mr-2" />
-                  Lihat Rating
+                  <Calendar className="h-4 w-4 mr-2" />
+                  Lihat Ketersediaan
                 </Button>
               </div>
             </div>
@@ -281,7 +369,7 @@ const Gallery = () => {
           <DialogHeader className="p-4 pb-0">
             <div className="flex items-center justify-between">
               <DialogTitle className="text-white text-lg font-semibold">
-                Testimoni Pelanggan
+                {selectedCar?.name}
               </DialogTitle>
               <div className="flex items-center gap-2">
                 <Button
@@ -309,8 +397,8 @@ const Gallery = () => {
           </DialogHeader>
           <div className="relative overflow-hidden">
             <img
-              src={selectedImage || ""}
-              alt="Testimoni"
+              src={selectedCar?.image}
+              alt={selectedCar?.name}
               className={`w-full max-h-[70vh] object-contain transition-transform duration-300 ${
                 isZoomed
                   ? "scale-150 cursor-zoom-out"
@@ -319,36 +407,39 @@ const Gallery = () => {
               onClick={toggleZoom}
             />
           </div>
-          <div className="p-4 bg-white">
-            <div className="text-center">
-              <h3 className="font-semibold text-lg mb-2">
-                Testimoni Pelanggan NJRC
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Kisah kepuasan dari pelanggan yang telah menggunakan layanan
-                rental mobil kami
-              </p>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star
-                    key={i}
-                    className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
-                <span className="font-bold text-primary ml-2">5.0</span>
+          {selectedCar && (
+            <div className="p-4 bg-white">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">
+                    {selectedCar.name}
+                  </h3>
+                  <p className="text-muted-foreground mb-2">
+                    {selectedCar.brand} • {selectedCar.year}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {selectedCar.category} • {selectedCar.transmission} •{" "}
+                    {selectedCar.capacity}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="font-bold text-primary text-xl mb-2">
+                    {selectedCar.price}
+                  </p>
+                  <a
+                    href="https://wa.me/6282111111991"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="w-full md:w-auto">
+                      <Zap className="h-4 w-4 mr-2" />
+                      Pesan Sekarang
+                    </Button>
+                  </a>
+                </div>
               </div>
-              <a
-                href="https://wa.me/6282111111991"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="w-full md:w-auto">
-                  <Star className="h-4 w-4 mr-2" />
-                  Pesan Sekarang
-                </Button>
-              </a>
             </div>
-          </div>
+          )}
         </DialogContent>
       </Dialog>
     </div>

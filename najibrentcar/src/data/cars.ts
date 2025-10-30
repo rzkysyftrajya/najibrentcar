@@ -13,6 +13,30 @@ export interface Car {
 
 export const cars: Car[] = [
   {
+    id: 43,
+    name: "Mercedes GLC300",
+    brand: "Mercedes Benz",
+    year: "2024",
+    price: "Rp 4.500.000 / hari",
+    image: "/armada/Mercedes-GLC300.webp",
+    category: "Luxury SUV",
+    transmission: "Automatic",
+    capacity: "5 Penumpang",
+    featured: true,
+  },
+  {
+    id: 44,
+    name: "Mercedes C300",
+    brand: "Mercedes Benz",
+    year: "2024",
+    price: "Rp 4.200.000 / hari",
+    image: "/armada/Mercedes-C300.webp",
+    category: "Luxury Sedan",
+    transmission: "Automatic",
+    capacity: "5 Penumpang",
+    featured: true,
+  },
+  {
     id: 1,
     name: "Lexus LM350H 2025",
     brand: "Lexus",
